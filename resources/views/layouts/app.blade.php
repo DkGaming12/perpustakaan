@@ -270,13 +270,13 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg main-navbar shadow-sm mb-4">
+    <nav class="navbar navbar-expand-lg main-navbar shadow-sm mb-4" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center text-white" href="{{ route('dashboard') }}">
                 <i class="bi bi-book-half me-2"></i> Sistem Perpustakaan
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list text-white" style="font-size: 1.8rem;"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
