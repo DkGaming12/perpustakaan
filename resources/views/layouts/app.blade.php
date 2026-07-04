@@ -55,11 +55,11 @@
         .main-navbar .nav-link {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.3rem;
             color: rgba(255,255,255,0.7) !important;
             font-weight: 500;
-            font-size: 0.875rem;
-            padding: 0.5rem 0.9rem !important;
+            font-size: 0.85rem;
+            padding: 0.5rem 0.6rem !important;
             border-radius: 8px;
             transition: all 0.2s ease;
         }
@@ -73,7 +73,8 @@
         /* Global search */
         .global-search {
             position: relative;
-            max-width: 280px;
+            min-width: 220px;
+            max-width: 260px;
         }
         .global-search input {
             background: rgba(255,255,255,0.1);
@@ -83,6 +84,7 @@
             padding: 0.45rem 0.75rem 0.45rem 2.2rem;
             border-radius: 10px;
             transition: all 0.2s ease;
+            width: 100%;
         }
         .global-search input::placeholder { color: rgba(255,255,255,0.5); }
         .global-search input:focus {
