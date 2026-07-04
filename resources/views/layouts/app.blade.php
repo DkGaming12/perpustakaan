@@ -308,6 +308,11 @@
                             <i class="bi bi-file-earmark-bar-graph"></i> Laporan
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('perpus.about') ? 'active' : '' }}" href="{{ route('perpus.about') }}">
+                            <i class="bi bi-info-circle"></i> About
+                        </a>
+                    </li>
                 </ul>
 
                 <div class="d-flex align-items-center gap-2">

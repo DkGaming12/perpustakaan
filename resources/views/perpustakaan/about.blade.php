@@ -20,13 +20,25 @@
             
             <div class="row g-3 text-start">
                 <div class="col-sm-6">
-                    <div class="p-3 bg-light rounded border border-light">
+                    <div class="p-3 bg-light rounded border border-light h-100">
                         <small class="text-muted d-block uppercase mb-1">Developer</small>
                         <strong class="text-dark">{{ $info['developer'] }}</strong>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="p-3 bg-light rounded border border-light">
+                    <div class="p-3 bg-light rounded border border-light h-100">
+                        <small class="text-muted d-block uppercase mb-1">NIM</small>
+                        <strong class="text-dark">{{ $info['nim'] }}</strong>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="p-3 bg-light rounded border border-light h-100">
+                        <small class="text-muted d-block uppercase mb-1">Prodi</small>
+                        <strong class="text-dark">{{ $info['prodi'] }}</strong>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="p-3 bg-light rounded border border-light h-100">
                         <small class="text-muted d-block uppercase mb-1">Tahun Rilis</small>
                         <strong class="text-dark">&copy; {{ $info['tahun'] }}</strong>
                     </div>

@@ -37,8 +37,10 @@ class PerpustakaanController extends Controller
         $info = [
             'nama'      => 'Sistem Perpustakaan Laravel',
             'versi'     => '1.0.0',
-            'deskripsi' => 'Sistem manajemen perpustakaan berbasis Laravel framework dengan Eloquent ORM dan Migration',
-            'developer' => 'Didik',
+            'deskripsi' => 'Sistem manajemen perpustakaan berbasis Laravel.',
+            'developer' => 'Didi Purnomo',
+            'nim'       => '60324067',
+            'prodi'     => 'Informatika',
             'tahun'     => date('Y'),
         ];
 
