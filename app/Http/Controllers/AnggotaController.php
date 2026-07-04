@@ -13,9 +13,17 @@ class AnggotaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $anggota_list = Anggota::orderBy('kode_anggota')->paginate(10);
+        $query = Anggota::query();
+        
+        if ($request->filled('q')) {
+            $q = $request->q;
+            $query->where('nama', 'like', "%{$q}%")
+                  ->orWhere('kode_anggota', 'like', "%{$q}%");
+        }
+        
+        $anggota_list = $query->orderBy('kode_anggota')->paginate(10);
         return view('anggota.index', compact('anggota_list'));
     }
 

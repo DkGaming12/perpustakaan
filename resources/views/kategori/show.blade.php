@@ -29,7 +29,19 @@
     </div>
 </div>
 
-<h3 class="fw-bold mb-3">Daftar Buku Dalam Kategori</h3>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold mb-0">Daftar Buku Dalam Kategori</h3>
+    <form action="{{ route('kategori.show', $kategori->id) }}" method="GET" class="d-flex gap-2">
+        <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" name="q" class="form-control border-start-0" placeholder="Cari judul buku..." value="{{ request('q') }}">
+        </div>
+        <button type="submit" class="btn btn-primary px-4 rounded-pill">Filter</button>
+        @if(request('q'))
+            <a href="{{ route('kategori.show', $kategori->id) }}" class="btn btn-outline-secondary rounded-pill">Reset</a>
+        @endif
+    </form>
+</div>
 
 <div class="card p-4 border-0 shadow-sm">
     @if ($buku_list->count() > 0)

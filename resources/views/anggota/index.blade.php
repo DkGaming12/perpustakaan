@@ -18,6 +18,19 @@
     </div>
 </div>
 
+<div class="card p-4 mb-4">
+    <form action="{{ route('anggota.index') }}" method="GET" class="d-flex gap-2">
+        <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" name="q" class="form-control border-start-0" placeholder="Cari nama atau kode anggota..." value="{{ request('q') }}">
+        </div>
+        <button type="submit" class="btn btn-primary px-4 rounded-pill">Filter</button>
+        @if(request('q'))
+            <a href="{{ route('anggota.index') }}" class="btn btn-outline-secondary rounded-pill">Reset</a>
+        @endif
+    </form>
+</div>
+
 <div class="card p-4">
     <div class="table-responsive">
         <table class="table table-hover align-middle">

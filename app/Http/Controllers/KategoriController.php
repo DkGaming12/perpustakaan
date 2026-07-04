@@ -48,10 +48,15 @@ class KategoriController extends Controller
     /**
      * Display the specified category with its books.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
         $kategori = Kategori::findOrFail($id);
-        $buku_list = Buku::where('kategori', $kategori->nama_kategori)->get();
+        
+        $query = Buku::where('kategori', $kategori->nama_kategori);
+        if ($request->filled('q')) {
+            $query->where('judul', 'like', "%{$request->q}%");
+        }
+        $buku_list = $query->get();
 
         return view('kategori.show', compact('kategori', 'buku_list'));
     }
