@@ -15,6 +15,27 @@
     </div>
 </div>
 
+<div class="card p-4 mb-4">
+    <form action="{{ route('perpus.index') }}" method="GET" class="d-flex flex-wrap gap-2">
+        <div class="input-group" style="flex: 1; min-width: 250px;">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" name="q" class="form-control border-start-0" placeholder="Cari judul atau pengarang..." value="{{ request('q') }}">
+        </div>
+        
+        <select name="kategori" class="form-select" style="width: auto;">
+            <option value="">-- Semua Kategori --</option>
+            @foreach($kategoriList as $kat)
+                <option value="{{ $kat }}" {{ request('kategori') == $kat ? 'selected' : '' }}>{{ $kat }}</option>
+            @endforeach
+        </select>
+
+        <button type="submit" class="btn btn-primary px-4 rounded-pill">Filter</button>
+        @if(request('q') || request('kategori'))
+            <a href="{{ route('perpus.index') }}" class="btn btn-outline-secondary rounded-pill">Reset</a>
+        @endif
+    </form>
+</div>
+
 <div class="card p-4">
     <div class="table-responsive">
         <table class="table table-hover align-middle">
@@ -29,9 +50,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($buku_list as $index => $buku)
+                @forelse ($buku_list as $index => $buku)
                 <tr>
-                    <td class="fw-bold text-secondary">{{ $index + 1 }}</td>
+                    <td class="fw-bold text-secondary">{{ ($buku_list->currentPage() - 1) * $buku_list->perPage() + $index + 1 }}</td>
                     <td>
                         <div class="d-flex align-items-center">
                             <div class="p-2 bg-light rounded text-primary me-3">
@@ -41,6 +62,7 @@
                                 <a href="{{ route('buku.show', $buku->id) }}" class="fw-semibold text-decoration-none text-dark d-block">
                                     {{ $buku->judul }}
                                 </a>
+                                <small class="text-muted">{{ $buku->kategori }}</small>
                             </div>
                         </div>
                     </td>
@@ -55,9 +77,18 @@
                         </a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="6" class="text-center text-muted py-4">Belum ada data buku.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-4 d-flex justify-content-center">
+        {{ $buku_list->links() }}
     </div>
 </div>
 @endsection

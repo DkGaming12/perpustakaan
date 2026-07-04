@@ -10,14 +10,28 @@ class PerpustakaanController extends Controller
     /**
      * Halaman utama - Daftar Buku (dari database via Eloquent).
      */
-    public function index()
+    public function index(Request $request)
     {
         $nama_sistem = "Sistem Perpustakaan Laravel";
         $versi       = "12.x";
-        $buku_list   = Buku::orderBy('kode_buku')->get();
-        $total_buku  = $buku_list->count();
+        
+        $query = Buku::query();
+        
+        if ($request->filled('q')) {
+            $query->where('judul', 'like', "%{$request->q}%")
+                  ->orWhere('pengarang', 'like', "%{$request->q}%");
+        }
+        
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
+        }
+        
+        $buku_list   = $query->orderBy('kode_buku')->paginate(10)->appends($request->query());
+        $total_buku  = $buku_list->total(); // Use total() for paginated results
 
-        return view('perpustakaan.index', compact('nama_sistem', 'versi', 'total_buku', 'buku_list'));
+        $kategoriList = Buku::select('kategori')->distinct()->orderBy('kategori')->pluck('kategori');
+
+        return view('perpustakaan.index', compact('nama_sistem', 'versi', 'total_buku', 'buku_list', 'kategoriList'));
     }
 
     /**
