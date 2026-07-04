@@ -28,7 +28,7 @@
         <select name="status" class="form-select" style="width: auto;">
             <option value="">-- Semua Status --</option>
             <option value="Aktif" {{ request('status') == 'Aktif' ? 'selected' : '' }}>Aktif</option>
-            <option value="Non-aktif" {{ request('status') == 'Non-aktif' ? 'selected' : '' }}>Non-aktif</option>
+            <option value="Nonaktif" {{ request('status') == 'Nonaktif' ? 'selected' : '' }}>Non-aktif</option>
         </select>
         
         <select name="jk" class="form-select" style="width: auto;">
