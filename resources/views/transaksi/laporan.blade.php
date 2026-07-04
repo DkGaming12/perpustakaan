@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="fw-bold mb-0 text-primary"><i class="bi bi-file-earmark-bar-graph me-2"></i>Laporan Transaksi</h3>
     @if(count($transaksis) > 0)
-        <a href="{{ route('transaksi.export_pdf', request()->all()) }}" class="btn btn-danger rounded-pill shadow-sm px-4 fw-bold">
+        <a href="{{ route('transaksi.export_pdf', request()->all()) }}" download="Laporan-Transaksi.pdf" class="btn btn-danger rounded-pill shadow-sm px-4 fw-bold">
             <i class="bi bi-file-pdf me-1"></i> Export PDF
         </a>
     @endif

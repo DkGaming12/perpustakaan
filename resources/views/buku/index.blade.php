@@ -9,7 +9,7 @@
         <p class="text-muted mb-0 small">Kelola koleksi buku perpustakaan secara real-time</p>
     </div>
     <div class="d-flex gap-2">
-        <a href="{{ route('buku.export') }}" class="btn btn-outline-success rounded-pill px-3">
+        <a href="{{ route('buku.export') }}" download="Data-Buku.csv" class="btn btn-outline-success rounded-pill px-3 shadow-sm">
             <i class="bi bi-file-earmark-spreadsheet me-1"></i> Export Excel
         </a>
         <a href="{{ route('buku.create') }}" class="btn btn-primary rounded-pill px-3 shadow-sm">

@@ -9,7 +9,7 @@
         <p class="text-muted mb-0 small">Kelola data anggota aktif dan non-aktif perpustakaan</p>
     </div>
     <div class="col-md-4 text-md-end d-flex gap-2 justify-content-md-end">
-        <a href="{{ route('anggota.export') }}" class="btn btn-outline-success rounded-pill px-3 shadow-sm">
+        <a href="{{ route('anggota.export') }}" download="Data-Anggota.csv" class="btn btn-outline-success rounded-pill px-3 shadow-sm">
             <i class="bi bi-file-earmark-spreadsheet me-1"></i> Export Excel
         </a>
         <a href="{{ route('anggota.create') }}" class="btn btn-success rounded-pill px-3 shadow-sm">
