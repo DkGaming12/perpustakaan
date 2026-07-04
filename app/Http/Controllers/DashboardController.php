@@ -23,9 +23,14 @@ class DashboardController extends Controller
                                ->where('tanggal_kembali', '<', now())
                                ->count();
         $totalTransaksi  = Transaksi::count();
-        $totalDenda      = Transaksi::where('status', 'Dikembalikan')
-                               ->where('denda', '>', 0)
-                               ->sum('denda');
+        // Menghitung total denda (yang sudah dibayar + denda berjalan dari yang terlambat)
+        $totalDenda = Transaksi::where('status', 'Dikembalikan')->sum('denda');
+        $lateTransactions = Transaksi::where('status', 'Dipinjam')
+                                     ->where('tanggal_kembali', '<', now())
+                                     ->get();
+        foreach ($lateTransactions as $tx) {
+            $totalDenda += $tx->denda_total;
+        }
 
         // ===== CHART DATA =====
 
