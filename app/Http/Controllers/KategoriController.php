@@ -53,9 +53,23 @@ class KategoriController extends Controller
         $kategori = Kategori::findOrFail($id);
         
         $query = Buku::where('kategori', $kategori->nama_kategori);
+        
         if ($request->filled('q')) {
             $query->where('judul', 'like', "%{$request->q}%");
         }
+        
+        if ($request->filled('stok_status')) {
+            if ($request->stok_status === 'habis') {
+                $query->where('stok', 0);
+            } elseif ($request->stok_status === 'menipis') {
+                $query->where('stok', '>', 0)->where('stok', '<=', 5);
+            } elseif ($request->stok_status === 'sedang') {
+                $query->where('stok', '>', 5)->where('stok', '<=', 15);
+            } elseif ($request->stok_status === 'aman') {
+                $query->where('stok', '>', 15);
+            }
+        }
+        
         $buku_list = $query->get();
 
         return view('kategori.show', compact('kategori', 'buku_list'));

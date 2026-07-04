@@ -19,8 +19,18 @@ class AnggotaController extends Controller
         
         if ($request->filled('q')) {
             $q = $request->q;
-            $query->where('nama', 'like', "%{$q}%")
-                  ->orWhere('kode_anggota', 'like', "%{$q}%");
+            $query->where(function($qBuilder) use ($q) {
+                $qBuilder->where('nama', 'like', "%{$q}%")
+                         ->orWhere('kode_anggota', 'like', "%{$q}%");
+            });
+        }
+        
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+        
+        if ($request->filled('jk')) {
+            $query->where('jenis_kelamin', $request->jk);
         }
         
         $anggota_list = $query->orderBy('kode_anggota')->paginate(10);

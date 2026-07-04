@@ -19,13 +19,26 @@
 </div>
 
 <div class="card p-4 mb-4">
-    <form action="{{ route('anggota.index') }}" method="GET" class="d-flex gap-2">
-        <div class="input-group">
+    <form action="{{ route('anggota.index') }}" method="GET" class="d-flex flex-wrap gap-2">
+        <div class="input-group" style="flex: 1; min-width: 250px;">
             <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
             <input type="text" name="q" class="form-control border-start-0" placeholder="Cari nama atau kode anggota..." value="{{ request('q') }}">
         </div>
+        
+        <select name="status" class="form-select" style="width: auto;">
+            <option value="">-- Semua Status --</option>
+            <option value="Aktif" {{ request('status') == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+            <option value="Non-aktif" {{ request('status') == 'Non-aktif' ? 'selected' : '' }}>Non-aktif</option>
+        </select>
+        
+        <select name="jk" class="form-select" style="width: auto;">
+            <option value="">-- Semua Jenis Kelamin --</option>
+            <option value="Laki-laki" {{ request('jk') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+            <option value="Perempuan" {{ request('jk') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+        </select>
+
         <button type="submit" class="btn btn-primary px-4 rounded-pill">Filter</button>
-        @if(request('q'))
+        @if(request('q') || request('status') || request('jk'))
             <a href="{{ route('anggota.index') }}" class="btn btn-outline-secondary rounded-pill">Reset</a>
         @endif
     </form>
