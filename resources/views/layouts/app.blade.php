@@ -286,7 +286,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('buku.*') || Route::is('perpus.*') ? 'active' : '' }}" href="{{ route('buku.index') }}">
+                        <a class="nav-link {{ Route::is('buku.*') || Route::is('perpus.index') || Route::is('perpus.show') ? 'active' : '' }}" href="{{ route('buku.index') }}">
                             <i class="bi bi-book"></i> Buku
                         </a>
                     </li>
