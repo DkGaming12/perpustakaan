@@ -152,14 +152,14 @@ class BukuController extends Controller
             // BOM for UTF-8
             fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
             // Header row
-            fputcsv($file, ['Kode Buku', 'Judul', 'Kategori', 'Pengarang', 'Penerbit', 'Tahun Terbit', 'ISBN', 'Harga', 'Stok', 'Bahasa']);
+            fputcsv($file, ['Kode Buku', 'Judul', 'Kategori', 'Pengarang', 'Penerbit', 'Tahun Terbit', 'ISBN', 'Harga', 'Stok', 'Bahasa'], ';');
             // Data rows
             foreach ($bukus as $b) {
                 fputcsv($file, [
                     $b->kode_buku, $b->judul, $b->kategori, $b->pengarang,
                     $b->penerbit, $b->tahun_terbit, $b->isbn,
                     $b->harga, $b->stok, $b->bahasa
-                ]);
+                ], ';');
             }
             fclose($file);
         };

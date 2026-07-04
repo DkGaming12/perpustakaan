@@ -126,15 +126,18 @@ class AnggotaController extends Controller
             $file = fopen('php://output', 'w');
             // BOM for UTF-8
             fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
-            // Header row
-            fputcsv($file, ['Kode Anggota', 'Nama Lengkap', 'Email', 'Telepon', 'Alamat', 'Tanggal Lahir', 'Jenis Kelamin', 'Pekerjaan', 'Tanggal Daftar', 'Status']);
+            // Header row (gunakan separator ; agar rapi di Excel format Indonesia)
+            fputcsv($file, ['Kode Anggota', 'Nama Lengkap', 'Email', 'Telepon', 'Alamat', 'Tanggal Lahir', 'Jenis Kelamin', 'Pekerjaan', 'Tanggal Daftar', 'Status'], ';');
             // Data rows
             foreach ($anggotas as $a) {
+                $tgl_lahir = $a->tanggal_lahir ? \Carbon\Carbon::parse($a->tanggal_lahir)->format('Y-m-d') : '';
+                $tgl_daftar = $a->tanggal_daftar ? \Carbon\Carbon::parse($a->tanggal_daftar)->format('Y-m-d') : '';
+                
                 fputcsv($file, [
                     $a->kode_anggota, $a->nama, $a->email, $a->telepon,
-                    $a->alamat, $a->tanggal_lahir ? $a->tanggal_lahir->format('Y-m-d') : '', $a->jenis_kelamin,
-                    $a->pekerjaan, $a->tanggal_daftar ? $a->tanggal_daftar->format('Y-m-d') : '', $a->status
-                ]);
+                    $a->alamat, $tgl_lahir, $a->jenis_kelamin,
+                    $a->pekerjaan, $tgl_daftar, $a->status
+                ], ';');
             }
             fclose($file);
         };
